@@ -7,22 +7,18 @@ using namespace std;
 
 void Omlet(int *Arr, int n, queue<int> *q, stack<int> *stk)
 {
-    int count = 0;
+    int count = 2 * n + ((n + 1) * n / 2 - 1) * 2;
+    cout << count << endl;
+
     string str;
     // Take photo 1;
     for (int i = 0; i < n; i++)
     {
         stk->push(Arr[i]);
-        // cout << "PLACE " << Arr[i] << endl;
-        str += "PLACE ";
-        str += to_string(Arr[i]);
-        str += "\n";
+        cout << "PLACE " << Arr[i] << endl;
         count++;
     }
-    // cout << "PHOTO" << endl;
-    str += "PHOTO";
-    str += "\n";
-    count++;
+    cout << "PHOTO" << endl;
     for (int j = 2; j <= n; j++)
     {
         for (int i = 1; i <= j; i++)
@@ -30,29 +26,17 @@ void Omlet(int *Arr, int n, queue<int> *q, stack<int> *stk)
             int val = stk->top();
             stk->pop();
             q->push(val);
-            // cout << "POP" << endl;
-            str += "POP";
-            str += "\n";
-            count++;
+            cout << "POP" << endl;
         }
         while (q->empty() != true)
         {
             int val = q->front();
             q->pop();
             stk->push(val);
-            // cout << "PLACE " << val << endl;
-            str += "PLACE ";
-            str += to_string(val);
-            str += "\n";
-            count++;
+            cout << "PLACE " << val << endl;
         }
-        // cout << "PHOTO" << endl;
-        str += "PHOTO";
-        str += "\n";
-        count++;
+        cout << "PHOTO" << endl;
     }
-    cout << count << endl;
-    cout << str;
 }
 
 int main()
