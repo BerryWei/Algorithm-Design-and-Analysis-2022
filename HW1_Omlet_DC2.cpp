@@ -21,12 +21,12 @@ void OmletDC(int low, int high)
     if (low == high)
     {
         
-        cout << "PHOTO" << endl;
+        cout << "PHOTO" << '\n';
         return;
     }
     if (high < low)
     {
-        cout << "PHOTO" << endl;
+        cout << "PHOTO" << '\n';
         return;
     }
     
@@ -36,17 +36,17 @@ void OmletDC(int low, int high)
     OmletDC(low, mid);
     for (int i = 0; i < n; i++)
     {
-        cout << "POP" << endl;
+        cout << "POP" << '\n';
     }
     // place upper half
     for (int i = low; i <= mid; i++)
     {
-        cout << "PLACE " << i << endl;
+        cout << "PLACE " << i << '\n';
     }
     // place lower half
     for (int i = high; i >= mid + 1; i--)
     {
-        cout << "PLACE " << i << endl;
+        cout << "PLACE " << i << '\n';
     }
     
     OmletDC(mid+1, high);
@@ -63,14 +63,12 @@ int main()
 
 
 
-    cout << count(n) << endl;
+    cout << count(n) << '\n';
 
     for(int i=1; i<=n ;i++)
     {
-        cout << "PLACE " << n - i + 1 << endl;
+        cout << "PLACE " << n - i + 1 << '\n';
     }
-
-
 
     OmletDC(1, n);
 
