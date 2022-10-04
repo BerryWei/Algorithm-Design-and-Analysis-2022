@@ -1,8 +1,8 @@
 CC = gcc
 LINKER_FLAGS = -g -std=c++17 -lstdc++
 CFLAGS = -static -O2 -lstdc++ -std=c++17 -fsanitize=undefined
-OBJS = apex.o
-EXE = apex
+OBJS = apex_clean.o
+EXE = apex_clean
 
 main: ${OBJS}
 	${CC} -o ${EXE} ${OBJS} -lstdc++ ${LINKER_FLAGS}
