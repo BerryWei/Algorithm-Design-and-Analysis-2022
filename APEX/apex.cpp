@@ -1,5 +1,6 @@
 #include<iostream>
 #include<algorithm>
+#include<cstring>
 
 using namespace std;
 
@@ -18,11 +19,17 @@ inline int calcCount(int & min1Val, int *table, int &val)
 
 int calcCross(int *tableL ,int *tableR, int *array, int &n, int lower, int mid, int high)
 {
+    /*
     for(int i=0; i< 100001; i++)
     {
         tableL[i] = 0;
         tableR[i] = 0;
     }
+    */
+   memset(tableL, 0, sizeof(int)*100001);
+   memset(tableR, 0, sizeof(int)*100001);
+
+   
     int idxL = mid;
     int idxR = mid+1;
     int count = 0;
@@ -159,6 +166,9 @@ int calcPair(int *tableL, int *tableR, int *array, int& n, int lower, int high)
     count += calcCross(tableL, tableR, array, n, lower, mid, high);
 
     return count;
+
+
+
 }
 
 int main(){
@@ -172,6 +182,7 @@ int main(){
 
     int tableL[100001];
     int tableR[100001];
+    //init table
     for(int i=0; i< 100001; i++)
     {
         tableL[i] = 0;
@@ -183,6 +194,6 @@ int main(){
     int nbPairs = calcPair(tableL, tableR, array, n, 0, n-1);
 
     //int nbPairs = calcCross(array, n, 0, n/2, n-1);
-    cout << nbPairs << '\n';
+    cout << nbPairs << endl;
     return 0;
 }
