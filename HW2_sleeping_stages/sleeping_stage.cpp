@@ -1,31 +1,33 @@
+// ta 課、與同學討論
 #include <iostream>
+#include <climits>
 
 using namespace std;
 
-int count_stage(int N, int K, int *a)
+long long int count_stage(long long int N, long long int K, long long int *a)
 {
     // init L
-    int **L = new int* [K];
-    for(int i = 0; i< K; i++)
-        L[i] = new int [N];
+    long long int **L = new long long int* [K];
+    for(long long int i = 0; i< K; i++)
+        L[i] = new long long int [N];
         
-    for(int i = 0; i< K; i++){
-        for(int j = 0; j<N; j++)
+    for(long long int i = 0; i< K; i++){
+        for(long long int j = 0; j<N; j++)
             L[i][j] = 0;
     }
     // init R
-    int **R = new int* [N];
-    for(int i = 0; i< N; i++)
-        R[i] = new int [N];
-    for(int i = 0; i< N; i++){
-        for(int j = 0; j<N; j++)
+    long long int **R = new long long int* [N];
+    for(long long int i = 0; i< N; i++)
+        R[i] = new long long int [N];
+    for(long long int i = 0; i< N; i++){
+        for(long long int j = 0; j<N; j++)
             R[i][j] = 0;
     }
     // fill R
-    for(int i = 0; i< N; i++)
+    for(long long int i = 0; i< N; i++)
     {
-        int max_so_far = INT32_MIN, max_ending_here = 0;
-        for(int j = (N-i-1); j>= 0; j--)
+        long long int max_so_far = LLONG_MIN, max_ending_here = 0;
+        for(long long int j = (N-i-1); j>= 0; j--)
         {
             max_ending_here = max_ending_here + a[j];
             if (max_so_far < max_ending_here)
@@ -37,8 +39,8 @@ int count_stage(int N, int K, int *a)
         }
     }
     // fill L :: k = 1
-    int max_so_far = INT32_MIN, max_ending_here = 0;
-    for(int j = 0; j < N; j++)
+    long long int max_so_far = LLONG_MIN, max_ending_here = 0;
+    for(long long int j = 0; j < N; j++)
     {
         max_ending_here = max_ending_here + a[j];
         if (max_so_far < max_ending_here)
@@ -50,17 +52,18 @@ int count_stage(int N, int K, int *a)
     }
 
     // fill L :: k>1
-    int temp_min, temp;
-    for(int i = 1; i< K; i++)
+    long long int temp_min, temp;
+    for(long long int i = 1; i< K; i++)
     {
-        for(int j = 0; j < N; j++)
+        for(long long int j = 0; j < N; j++)
         {
             if(j < i)
                 continue;
 
-            temp_min = INT32_MAX;
-            for(int k = 0; k< j; k++)
+            temp_min = LLONG_MAX;
+            for(long long int k = 0; k< j; k++)
             {
+
                 temp = L[i-1][k] + R[N - j - 1][k+1];
                 if(temp < temp_min)
                     temp_min = temp;
@@ -69,7 +72,6 @@ int count_stage(int N, int K, int *a)
         }
     }    
 
-// PRINT
 /*
 cout << endl;
 for(int i = 0; i< K; i++)
@@ -78,11 +80,19 @@ for(int i = 0; i< K; i++)
         cout << L[i][j] << " ";
     cout << endl;
 }
+cout << endl;
+for(int i = 0; i< N; i++)
+{
+    for(int j = 0; j < N; j++)
+        cout << R[i][j] << " ";
+    cout << endl;
+}
 */
     
     return L[K-1][N-1];
-
 }
+
+
 
 
 
@@ -93,8 +103,8 @@ int main()
     int N;
     int K;
     cin >> N >> K;
-    int *a = new int [N];
-    for (int i = 0; i< N; i++)
+    long long int *a = new long long int [N];
+    for (long long int i = 0; i< N; i++)
         cin >> a[i];
     
     cout << count_stage(N, K, a) << '\n';
