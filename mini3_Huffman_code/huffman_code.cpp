@@ -116,7 +116,11 @@ int main()
 
     
 
-
+    if( N == 1)
+    {
+        cout << "0" << '\n';
+        return 0;
+    }
     // query
     Hash* table = new Hash[N];
 
