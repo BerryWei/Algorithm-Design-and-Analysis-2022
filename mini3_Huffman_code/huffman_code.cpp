@@ -1,4 +1,3 @@
-// ta 課、與同學討論
 #include <iostream>
 #include <queue>
 #include <string>
