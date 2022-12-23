@@ -1,15 +1,15 @@
 CC = gcc
-CFLAGS = -g
-OBJS = HW1_Cash.o
-EXE = HW1_Cash
+LINKER_FLAGS = -g -std=c++17 -lstdc++
+CFLAGS = -static -O2 -lstdc++ -std=c++17 -fsanitize=undefined
+OBJS = main.o
+EXE = main
 
 main: ${OBJS}
-	${CC} -o ${EXE} ${OBJS} 
-
-	echo "\n\n"
-	./ ${EXE}
+	${CC} -o ${EXE} ${OBJS} -lstdc++ ${LINKER_FLAGS}
+	chmod 711 ${EXE}
+	./${EXE} <input1 
 %.o : %.c
-	${CC} -c $^ -o $@
+	${CC} -c $^ -o $@ ${CFLAGS}
 	
 
 clean:
